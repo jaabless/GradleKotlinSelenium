@@ -89,6 +89,7 @@ Tests the Playwright website navigation:
 
 # Run specific test class
 ./gradlew test --tests PlaywrightTest
+./gradlew test --tests GetStartedTest
 
 # Run with specific browser
 BROWSER=firefox ./gradlew test
