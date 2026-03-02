@@ -6,24 +6,33 @@ A test automation framework using Gradle, Kotlin, and Selenium WebDriver with PO
 ## Project Structure
 
 ```
-src/
-├── main/
-│   └── kotlin/
-│       └── com/
-│           └── automation/
-│               ├── config/
-│               │   └── ConfigManager.kt          # Configuration management
-│               ├── driver/
-│               │   └── DriverManager.kt          # WebDriver management
-│               └── pages/
-│                   ├── BasePage.kt               # Base page class
-│                   └── PlaywrightHomePage.kt    # Playwright page object
-└── test/
-    └── kotlin/
-        └── com/
-            └── automation/
-                └── tests/
-                    └── PlaywrightTest.kt        # Test cases
+GradleKotlinSelenium/
+├── src/
+│   ├── main/
+│   │   ├── kotlin/
+│   │   │   └── com/automation/
+│   │   │       ├── config/
+│   │   │       │   └── ConfigManager.kt          # Configuration management
+│   │   │       ├── driver/
+│   │   │       │   └── DriverManager.kt          # WebDriver singleton
+│   │   │       ├── pages/
+│   │   │       │   ├── BasePage.kt               # Base page class
+│   │   │       │   └── PlaywrightHomePage.kt    # Page object for Playwright site
+│   │   │       └── utils/
+│   │   │           └── WaitUtils.kt              # Wait utilities
+│   │   └── resources/
+│   │       └── logback.xml                       # Logging configuration
+│   └── test/
+│       └── kotlin/
+│           └── com/automation/tests/
+│               └── PlaywrightTest.kt             # Test cases
+├── build.gradle.kts                              # Gradle build configuration
+├── settings.gradle.kts                           # Gradle settings
+├── gradlew / gradlew.bat                         # Gradle wrapper scripts
+├── gradle.sh / gradle.bat                        # Helper scripts
+├── README.md                                     # Full documentation
+├── QUICKSTART.md                                 # Quick start guide
+└── .gitignore                                    # Git ignore rules
 ```
 
 ## Features
@@ -39,7 +48,7 @@ src/
 
 ## Prerequisites
 
-- Java 11 or higher
+- Java 21 or higher
 - Gradle (optional - uses Gradle Wrapper)
 
 ## Setup
@@ -88,15 +97,18 @@ BROWSER=firefox ./gradlew test
 HEADLESS=true ./gradlew test
 ```
 
-## Project Dependencies
+## 🎯 Key Features
 
-- **Selenium**: Web automation
-- **Kotlin stdlib**: Language features
-- **JUnit 5**: Testing framework
-- **TestNG**: Alternative testing framework
-- **SLF4J & Logback**: Logging
-- **WebDriver Manager**: Automatic driver management
-- **Gson**: JSON parsing
+✅ **Gradle Build System** - Modern, efficient build management  
+✅ **Kotlin Language** - Concise, expressive, interoperable with Java  
+✅ **Selenium WebDriver** - Industry-standard browser automation  
+✅ **Page Object Model** - Maintainable, scalable test architecture  
+✅ **Page Factory Pattern** - Automatic element initialization  
+✅ **Configuration Management** - External, environment-based configuration  
+✅ **Comprehensive Logging** - Console and file logging with SLF4J + Logback  
+✅ **WebDriver Manager** - Automatic driver download and management  
+✅ **Explicit Waits** - Proper synchronization with dynamic content  
+✅ **JUnit 5** - Modern testing framework with annotations
 
 ## Page Object Model Pattern
 
@@ -104,6 +116,27 @@ Each page is represented as a class extending `BasePage`:
 - Elements are defined using `@FindBy` annotations
 - Methods encapsulate page interactions
 - Page Factory automatically initializes elements
+
+## 📊 Project Statistics
+
+- **Lines of Code**: ~500 (Main code)
+- **Test Files**: 2 (PlaywrightTest + ExampleTemplate)
+- **Page Objects**: 3 (PlaywrightHomePage + 2 templates)
+- **Dependencies**: 8 (Selenium, Kotlin, JUnit, Logging, etc.)
+- **Documentation Pages**: 6 (README, QUICKSTART, PROJECT_SUMMARY, etc.)
+- **Configuration Options**: 5 (Browser, URL, Headless, Timeouts)
+
+## 🛠️ Technology Stack
+
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Build Tool | Gradle | 9.3.1+ |
+| Language | Kotlin | 1.9.22 |
+| Test Framework | JUnit 5 | 5.10.0 |
+| Browser Automation | Selenium | 4.15.0 |
+| Logging | SLF4J + Logback | 2.0.9 / 1.4.11 |
+| Driver Management | WebDriver Manager | 5.6.3 |
+| Java Version | Java | 21+ |
 
 ## Best Practices Implemented
 
