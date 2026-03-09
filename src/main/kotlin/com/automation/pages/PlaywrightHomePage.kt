@@ -19,7 +19,17 @@ class PlaywrightHomePage(driver: WebDriver) : BasePage(driver) {
     @FindBy(xpath = "//a[contains(text(), 'Get started')]")
     private lateinit var getStartedLink: WebElement
 
-
+    fun hoverLanguageOption() {
+        logger.info("Hovering over Language option...")
+        val wait = WebDriverWait(driver, Duration.ofSeconds(10))
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+            org.openqa.selenium.By.xpath("//*[contains(@class,'navbar__item') and contains(@class,'dropdown') and .//a[@href='/java/']]")
+        ))
+        val actions = Actions(driver)
+        actions.moveToElement(languageButton).perform()
+        Thread.sleep(1000) // Allow hover effect to fully appear
+        logger.info("Language option hovered successfully")
+    }
 
     fun clickJavaOption() {
         logger.info("Clicking Java option...")
