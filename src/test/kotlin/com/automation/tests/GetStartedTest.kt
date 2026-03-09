@@ -1,33 +1,9 @@
 package com.automation.tests
 
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.slf4j.LoggerFactory
-import com.automation.config.ConfigManager
-import com.automation.driver.DriverManager
-import com.automation.pages.PlaywrightHomePage
 
-class GetStartedTest {
-    private val logger = LoggerFactory.getLogger(javaClass)
-    private lateinit var homePage: PlaywrightHomePage
-
-    @BeforeEach
-    fun setUp() {
-        logger.info("Setting up test...")
-        val driver = DriverManager.getDriver()
-        driver.navigate().to(ConfigManager.baseUrl)
-        homePage = PlaywrightHomePage(driver)
-        logger.info("Test setup completed")
-    }
-
-    @AfterEach
-    fun tearDown() {
-        logger.info("Tearing down test...")
-        DriverManager.quitDriver()
-        logger.info("Test teardown completed")
-    }
+class GetStartedTest : BaseTest() {
 
     @Test
     @DisplayName("Test Get Started Navigation Contains Docs URL")
