@@ -10,28 +10,23 @@ import java.time.Duration
 
 class PlaywrightHomePage(driver: WebDriver) : BasePage(driver) {
 
-    @FindBy(xpath = "//button[contains(text(), 'Language')]")
+    @FindBy(xpath = "//*[contains(@class,'navbar__item') and contains(@class,'dropdown') and .//a[@href='/java/']]")
     private lateinit var languageButton: WebElement
 
-    @FindBy(xpath = "//a[contains(text(), 'Java')]")
+    @FindBy(xpath = "//a[@href='/java/']")
     private lateinit var javaOption: WebElement
 
     @FindBy(xpath = "//a[contains(text(), 'Get started')]")
     private lateinit var getStartedLink: WebElement
 
-    fun hoverLanguageOption() {
-        logger.info("Hovering over Language option...")
-        val actions = Actions(driver)
-        actions.moveToElement(languageButton).perform()
-        Thread.sleep(500) // Allow hover to take effect
-        logger.info("Language option hovered successfully")
-    }
+
 
     fun clickJavaOption() {
         logger.info("Clicking Java option...")
         val wait = WebDriverWait(driver, Duration.ofSeconds(10))
-        wait.until(ExpectedConditions.elementToBeClickable(javaOption))
-        javaOption.click()
+        wait.until(ExpectedConditions.presenceOfElementLocated(org.openqa.selenium.By.xpath("//a[@href='/java/']")))
+        val js = driver as org.openqa.selenium.JavascriptExecutor
+        js.executeScript("arguments[0].click();", javaOption)
         logger.info("Java option clicked successfully")
     }
 
@@ -48,7 +43,7 @@ class PlaywrightHomePage(driver: WebDriver) : BasePage(driver) {
         return try {
             val wait = WebDriverWait(driver, Duration.ofSeconds(5))
             val escapedText = text.replace("'", "\\'")
-            val xpathLocator = "//*[contains(text(), \"$escapedText\")]"
+            val xpathLocator = "//*[contains(normalize-space(.), \"$escapedText\")]"
             val element = wait.until(ExpectedConditions.presenceOfElementLocated(
                 org.openqa.selenium.By.xpath(xpathLocator)
             ))
